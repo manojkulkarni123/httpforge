@@ -1,15 +1,12 @@
-from src.resilient_client.client import ResilientClient
-from src.resilient_client.models import ClientConfig
+import asyncio
+from resilient_client.models import ClientConfig
+from resilient_client.client import ResilientClient
 
-config = ClientConfig(base_url="https://api.openai.com", method="POST")
-client = ResilientClient(config)
+async def main():
+    config = ClientConfig(base_url="https://httpbin.org", method="GET")
+    
+    async with ResilientClient(config) as client:
+        result = await client.request("/get")
+        print(result)
 
-print(client)
-client()
-
-client2 = client.update_headers({"Authorization": "Bearer sk-123"})
-print(client2)
-print(client is client2)
-print(client.config.headers)
-print(client2.config.headers)
-
+asyncio.run(main())

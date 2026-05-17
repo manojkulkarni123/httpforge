@@ -3,7 +3,7 @@ name = "resilient-client"
 version = "0.1.0"
 description = "Production-grade async HTTP client"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["httpx"]
 
 [project.optional-dependencies]
 dev = ["pytest", "pytest-asyncio", "mypy", "ruff"]

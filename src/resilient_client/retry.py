@@ -14,7 +14,7 @@ def retry(max_retries: int = 3, exceptions: tuple = (Exception,)):
                 except exceptions as e:
                     last_exception = e
                     wait = 2 ** i
-                    print(f"Attempt number {i+1} failed {e} wait for {wait}")
+                    print(f"Attempt number {i+1} failed {e}, wait for {wait} Seconds")
                     time.sleep(wait)
             raise last_exception 
         return wrapper

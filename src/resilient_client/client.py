@@ -46,3 +46,12 @@ class ResilientClient:
             return response.json()
         
         return await _do()
+
+    async def paginate(self,endpoint:str):
+        page=1
+        while True:
+            data = await self.request(f"{endpoint}?page={page}")
+            yield data["items"]
+            if not data.get("next_page"):
+                break
+            page += 1
